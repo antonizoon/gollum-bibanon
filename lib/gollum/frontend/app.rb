@@ -209,7 +209,12 @@ module Precious
     end
 
     def commit_message
-      { :message => params[:message] }
+      if self.respond_to?('user_authed?') && user_authed?
+        user = get_user
+        return { :message => params[:message], :name => user.name, :email => user.email}
+      else
+        return { :message => params[:message]}
+      end
     end
   end
 end
