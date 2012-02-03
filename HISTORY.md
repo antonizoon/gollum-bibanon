@@ -1,3 +1,25 @@
+# git
+
+* Minor
+  * Add a way to configure the `#id_prefix` property of Sanitization
+    objects.
+* Bug Fixes
+  * Include the language of the code snippet when making a uniquely
+    identifiable sha of a code snippet while rendering a page.
+
+# 1.3.1 / 2011-07-21
+
+* Major Enhancements
+  * Allow prefixed ID attributes in headers to support internal linking
+    (#146).
+  * Markdown pages are rendered through Redcarpet by default (#176).
+* Minor Enhancements
+  * Remove Edit button on Preview pages (#164).
+  * Simplify Wiki#inspect and Page#inspect.
+* Bug Fixes
+  * Fixed broken preview functionality (#157).
+  * Fixed sidebar/footer rendering problems related to whitespace (#145).
+
 # 1.3.0 / 2011-04-25
 
 * Major Enhancements

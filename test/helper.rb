@@ -27,7 +27,7 @@ def cloned_testpath(path)
   cloned = File.join(path, self.class.name)
   FileUtils.rm_rf(cloned)
   Dir.chdir(path) do
-    %x{git clone #{File.basename(repo)} #{self.class.name}}
+    %x{git clone #{File.basename(repo)} #{self.class.name} 2>/dev/null}
   end
   cloned
 end
@@ -36,6 +36,12 @@ def commit_details
   { :message => "Did something at #{Time.now}",
     :name    => "Tom Preston-Werner",
     :email   => "tom@github.com" }
+end
+
+def normal(text)
+  text.gsub!(' ', '')
+  text.gsub!("\n", '')
+  text
 end
 
 # test/spec/mini 3

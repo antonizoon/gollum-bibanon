@@ -1,7 +1,10 @@
 require 'digest/sha1'
 require 'cgi'
+require 'pygments'
+require 'base64'
 
 module Gollum
+
   class Markup
     # Initialize a new Markup object.
     #
@@ -12,7 +15,7 @@ module Gollum
       @wiki    = page.wiki
       @name    = page.filename
       @data    = page.text_data
-      @version = page.version.id
+      @version = page.version.id if page.version
       @format  = page.format
       @dir     = ::File.dirname(page.path)
       @tagmap  = {}
@@ -50,15 +53,11 @@ module Gollum
         doc  = Nokogiri::HTML::DocumentFragment.parse(data)
         doc  = sanitize.clean_node!(doc) if sanitize
         yield doc if block_given?
-        data = doc_to_html(doc)
+        data = doc.to_html
       end
       data = process_tex(data)
       data.gsub!(/<p><\/p>/, '')
       data
-    end
-
-    def doc_to_html(doc)
-      doc.to_xhtml(:save_with => Nokogiri::XML::Node::SaveOptions::AS_XHTML)
     end
 
     #########################################################################
@@ -95,13 +94,7 @@ module Gollum
     def process_tex(data)
       @texmap.each do |id, spec|
         type, tex = *spec
-        out =
-        case type
-          when :block
-            %{<script type="math/tex; mode=display">#{tex}</script>}
-          when :inline
-            %{<script type="math/tex">#{tex}</script>}
-        end
+        out = %{<img src="#{::File.join(@wiki.base_path, '_tex.png')}?type=#{type}&data=#{Base64.encode64(tex).chomp}" alt="#{CGI.escapeHTML(tex)}">}
         data.gsub!(id, out)
       end
       data
@@ -365,7 +358,7 @@ module Gollum
     # Returns the placeholder'd String data.
     def extract_code(data)
       data.gsub!(/^``` ?([^\r\n]+)?\r?\n(.+?)\r?\n```\r?$/m) do
-        id     = Digest::SHA1.hexdigest($2)
+        id     = Digest::SHA1.hexdigest("#{$1}.#{$2}")
         cached = check_cache(:code, id)
         @codemap[id] = cached   ?
           { :output => cached } :
@@ -397,9 +390,8 @@ module Gollum
       end
 
       highlighted = begin
-        blocks.size.zero? ? [] : Gollum::Albino.colorize(blocks)
-      rescue ::Albino::ShellArgumentError, ::Albino::TimeoutExceeded,
-               ::Albino::MaximumOutputExceeded
+        blocks.map { |lang, code| Pygments.highlight(code, :lexer => lang) }
+      rescue ::RubyPython::PythonError
         []
       end
 

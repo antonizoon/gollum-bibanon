@@ -168,7 +168,7 @@ module Gollum
     #
     # Returns the String data.
     def formatted_data(&block)
-      @blob && @wiki.markup_class.new(self).render(historical?, &block)
+      @blob && markup_class.render(historical?, &block)
     end
 
     # Public: The format of the page.
@@ -178,6 +178,13 @@ module Gollum
     #     :roff ]
     def format
       self.class.format_for(@blob.name)
+    end
+
+    # Gets the Gollum::Markup instance that will render this page's content.
+    #
+    # Returns a Gollum::Markup instance.
+    def markup_class
+      @markup_class ||= @wiki.markup_classes[format].new(self)
     end
 
     # Public: The current version of the page.
@@ -374,6 +381,7 @@ module Gollum
     #
     # Returns the Page or nil if none exists.
     def find_sub_page(name)
+      return nil unless self.version
       return nil if self.filename =~ /^_/
       name = "_#{name.to_s.capitalize}"
       return nil if page_match(name, self.filename)
@@ -389,6 +397,10 @@ module Gollum
       end
 
       find_page_in_tree(map, name, '')
+    end
+
+    def inspect
+      %(#<#{self.class.name}:#{object_id} #{name} (#{format}) @wiki=#{@wiki.repo.path.inspect}>)
     end
   end
 end

@@ -13,9 +13,8 @@ module Precious
     dir = File.dirname(File.expand_path(__FILE__))
 
     # We want to serve public assets for now
-
-    set :public,    "#{dir}/public"
-    set :static,    true
+    set :public_folder, "#{dir}/public"
+    set :static,         true
 
     set :mustache, {
       # Tell mustache where the Views constant lives
@@ -145,6 +144,12 @@ module Precious
       mustache :compare
     end
 
+    get '/_tex.png' do
+      content_type 'image/png'
+      formula = Base64.decode64(params[:data])
+      Gollum::Tex.render_formula(formula)
+    end
+
     get %r{^/(javascript|css|images)} do
       halt 404
     end
@@ -200,7 +205,7 @@ module Precious
     end
 
     def update_wiki_page(wiki, page, content, commit_message, name = nil, format = nil)
-      return if !page ||  
+      return if !page ||
         ((!content || page.raw_data == content) && page.format == format)
       name    ||= page.name
       format    = (format || page.format).to_sym

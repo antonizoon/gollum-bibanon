@@ -8,19 +8,19 @@ require 'github/markup'
 require 'sanitize'
 
 # internal
-require 'gollum/git_access'
-require 'gollum/committer'
-require 'gollum/pagination'
-require 'gollum/blob_entry'
-require 'gollum/wiki'
-require 'gollum/page'
-require 'gollum/file'
-require 'gollum/markup'
-require 'gollum/albino'
-require 'gollum/sanitization'
+require File.expand_path('../gollum/git_access', __FILE__)
+require File.expand_path('../gollum/committer', __FILE__)
+require File.expand_path('../gollum/pagination', __FILE__)
+require File.expand_path('../gollum/blob_entry', __FILE__)
+require File.expand_path('../gollum/wiki', __FILE__)
+require File.expand_path('../gollum/page', __FILE__)
+require File.expand_path('../gollum/file', __FILE__)
+require File.expand_path('../gollum/markup', __FILE__)
+require File.expand_path('../gollum/sanitization', __FILE__)
+require File.expand_path('../gollum/tex', __FILE__)
 
 module Gollum
-  VERSION = '1.3.0'
+  VERSION = '1.3.1'
 
   class Error < StandardError; end
 
