@@ -24,6 +24,7 @@ This is a fork of Gollum used by the Bibliotheca Anonoma. It adds some extra fun
 * [OmniAuth User Commit Message](https://github.com/treeofsephiroth/gollum/commit/8400ad0749288f658f735625b7c39550134f7586) Adds the username from OmniAuth to a commit message.
 * [Underscore support in filenames](https://github.com/treeofsephiroth/gollum/commit/9710718b287ee79861f196d01094ee0c9c361730) - Adds underscore support in filenames, essential for importing Mediawiki pages
   * [Gollum Pull Request](https://github.com/github/gollum/pull/166)
+* [Fix `undefined method 'new' for Redcarpet:Module`](https://github.com/github/gollum/pull/271) - Forces the gem to use a working copy of redcarpet, rather than the new one.
 
 ## INSTALLATION
 
