@@ -26,6 +26,30 @@ This is a fork of Gollum used by the Bibliotheca Anonoma. It adds some extra fun
   * [Gollum Pull Request](https://github.com/github/gollum/pull/166)
 * [Fix `undefined method 'new' for Redcarpet:Module`](https://github.com/github/gollum/pull/271) - Forces the gem to use a working copy of redcarpet, rather than the new one.
 
+### Wishlist
+
+Functionalities we hope to implement in the future.
+
+* Custom CSS - Instead of modding the CSS stylesheet bundled with Gollum, it would be nice to work like Ikiwiki and use a "local.css" file in the git repo, if it exists. It would also be cool if we made a tag that specified custom CSS for a single page.
+  * [Ikiwiki CSS extension](http://ikiwiki.info/css/)
+
+* Extensions - Would make it possible to safely add extra functionality to wikilink tags, similar to that of Mediawiki Templates or ikiwiki plugins.
+  * [Basic support for extensions on Gollum](https://github.com/github/gollum/pull/58)
+  * [Gists embed implementation](https://github.com/github/gollum/issues/208)
+
+* Shift JIS extension - Tag to tell gollum to use [monafont](http://monafont.sourceforge.net/index-e.html) on selected text. Should probably use @font-face.
+  * [Font Face Guide](http://sixrevisions.com/css/font-face-guide/)
+  * [Mozilla Font Face Guide](https://developer.mozilla.org/en/CSS/@font-face)
+  * It might help to see how [Google Webfont](https://www.google.com/webfonts) works and implement it in Gollum's CSS
+
+* Page Locking - Would add ability to lock certain pages to editing. An example would be ikiwiki's page locking mechanism.
+  * [Ikiwiki Lockedit plugin](http://ikiwiki.info/plugins/lockedit/)
+* File Uploading - Would add the ability to upload some files through the web interface, and implement restrictions to allow only certain extensions of a certain size. 
+  * [Ikiwiki Attachments](http://ikiwiki.info/plugins/attachment/)
+  * [Ikiwiki File Checking](http://ikiwiki.info/plugins/filecheck/)
+* Untrusted Git Push - Yes, this would be perfectly safe. Ikiwiki has the ability to accept commits from anyone in the world. What makes this safe is Ikiwiki's pre-commit checks, which check page locks and upload restrictions to block any change that cannot be done with the web interface.
+  * [Ikiwiki Implementation](http://ikiwiki.info/tips/untrusted_git_push/)
+
 ## INSTALLATION
 
 The best way to install Gollum is with RubyGems:
