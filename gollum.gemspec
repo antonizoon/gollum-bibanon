@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'gollum-bibanon'
-  s.version           = '1.4.0'
+  s.version           = '1.4.1'
   s.date              = '2012-02-04'
   s.rubyforge_project = 'gollum'
 
@@ -101,6 +101,7 @@ Gem::Specification.new do |s|
     lib/gollum/page.rb
     lib/gollum/pagination.rb
     lib/gollum/sanitization.rb
+    lib/gollum/tex.rb
     lib/gollum/wiki.rb
     templates/formatting.html
     test/examples/lotr.git/COMMIT_EDITMSG
