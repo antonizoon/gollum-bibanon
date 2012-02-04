@@ -76,20 +76,11 @@ module Gollum
     end
 
     # Reusable filter to turn a filename (without path) into a canonical name.
-    # Strips extension, converts dashes to spaces.
+    # Strips extension, converts spaces to dashes.
     #
     # Returns the filtered String.
     def self.canonicalize_filename(filename)
-      strip_filename(filename).gsub('-', ' ')
-    end
-
-    # Reusable filter to strip extension and path from filename
-    #
-    # filename - The string path or filename to strip
-    #
-    # Returns the stripped String. 
-    def self.strip_filename(filename)
-      ::File.basename(filename, ::File.extname(filename))
+      filename.split('.')[0..-2].join('.').gsub('-', ' ')
     end
 
     # Public: Initialize a page.
@@ -107,13 +98,6 @@ module Gollum
     # Returns the String name.
     def filename
       @blob && @blob.name
-    end
-
-    # Public: The on-disk filename of the page with extension stripped.
-    #
-    # Returns the String name.
-    def filename_stripped
-      self.class.strip_filename(filename)
     end
 
     # Public: The canonical page name without extension, and dashes converted
@@ -260,22 +244,17 @@ module Gollum
 
     # Convert a human page name into a canonical page name.
     #
-    # name           - The String human page name.
-    # char_white_sub - Substitution for whitespace
-    # char_other_sub - Substitution for other special chars
+    # name - The String human page name.
     #
     # Examples
     #
     #   Page.cname("Bilbo Baggins")
     #   # => 'Bilbo-Baggins'
     #
-    #   Page.cname("Bilbo Baggins",'_')
-    #   # => 'Bilbo_Baggins'
-    #
     # Returns the String canonical name.
-    def self.cname(name, char_white_sub = '-', char_other_sub = '-')
-      name.respond_to?(:gsub) ?
-        name.gsub(%r{\s},char_white_sub).gsub(%r{[/<>+]}, char_other_sub) :
+    def self.cname(name)
+      name.respond_to?(:gsub)      ?
+        name.gsub(%r{[ /<>]}, '-') :
         ''
     end
 
@@ -389,11 +368,10 @@ module Gollum
     # Returns a Boolean.
     def page_match(name, filename)
       if match = self.class.valid_filename?(filename)
-        @wiki.ws_subs.each do |sub|
-          return true if Page.cname(name).downcase == Page.cname(match, sub).downcase
-        end
+        Page.cname(name).downcase == Page.cname(match).downcase
+      else
+        false
       end
-      false
     end
 
     # Loads a sub page.  Sub page nanes (footers) are prefixed with
