@@ -7,6 +7,17 @@
   * Include the language of the code snippet when making a uniquely
     identifiable sha of a code snippet while rendering a page.
 
+# 1.4.0 (Bibanon mod) / 2012-02-04
+
+* Major Enhancements
+  * Removed Mathjax support
+* Minor Enhancements
+  * Underscore support in wikipages (for Mediawiki)
+  * Adds OmniAuth username to commit message.
+  * Magnet, IRC, and FTP links now allowed.
+* Bug Fixes
+  * Some mods to make OmniAuth work better with Gollum (using OmniGollum)
+
 # 1.3.1 / 2011-07-21
 
 * Major Enhancements

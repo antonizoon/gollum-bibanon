@@ -3,17 +3,17 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.rubygems_version = '1.3.5'
 
-  s.name              = 'gollum'
-  s.version           = '1.3.1'
-  s.date              = '2011-07-21'
+  s.name              = 'gollum-bibanon'
+  s.version           = '1.4.0'
+  s.date              = '2012-02-04'
   s.rubyforge_project = 'gollum'
 
-  s.summary     = "A simple, Git-powered wiki."
-  s.description = "A simple, Git-powered wiki with a sweet API and local frontend."
+  s.summary     = "A simple, Git-powered wiki, with Bibanon mods."
+  s.description = "A simple, Git-powered wiki with a sweet API and local frontend, modded for the Bibliotheca Anonoma. Uses the latest edition of Gollum, adds OmniGollum support, underscores in page names, and other cool stuff."
 
-  s.authors  = ["Tom Preston-Werner", "Rick Olson"]
-  s.email    = 'tom@github.com'
-  s.homepage = 'http://github.com/github/gollum'
+  s.authors  = ["Tom Preston-Werner", "Rick Olson", "Tenshi Hinanawi"]
+  s.email    = 'cockmomgler@gmail.com'
+  s.homepage = 'http://github.com/treeofsephiroth/gollum'
 
   s.require_paths = %w[lib]
 
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency('mustache', [">= 0.11.2", "< 1.0.0"])
   s.add_dependency('sanitize', "~> 2.0.0")
   s.add_dependency('nokogiri', "~> 1.4")
-  s.add_dependency('redcarpet')
+  s.add_dependency('redcarpet', "~> 1.17.2")
 
   s.add_development_dependency('RedCloth')
   s.add_development_dependency('mocha')
