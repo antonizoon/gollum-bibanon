@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = 'gollum'
 
   s.summary     = "A simple, Git-powered wiki, with Bibanon mods."
-  s.description = "A simple, Git-powered wiki with a sweet API and local frontend, modded for the Bibliotheca Anonoma. Uses the latest edition of Gollum, adds OmniGollum support, underscores in page names, and other cool stuff."
+  s.description = "A simple, Git-powered wiki with a sweet API and local frontend, modded for the Bibliotheca Anonoma. Uses the latest edition of Gollum, adds OmniGollum support, and other cool stuff."
 
   s.authors  = ["Tom Preston-Werner", "Rick Olson", "Tenshi Hinanawi"]
   s.email    = 'cockmomgler@gmail.com'

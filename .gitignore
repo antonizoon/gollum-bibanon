@@ -4,3 +4,5 @@ pkg
 .bundle
 Gemfile.lock
 *~
+*.gem
+.directory
