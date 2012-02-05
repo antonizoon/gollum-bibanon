@@ -85,7 +85,6 @@ context "Frontend" do
     assert_equal 'def', page.version.message
   end
 
-<<<<<<< HEAD
   test "redirects to create on non-existant page" do
     name = "E"
     get "/#{name}"

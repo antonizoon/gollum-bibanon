@@ -7,6 +7,15 @@
   * Include the language of the code snippet when making a uniquely
     identifiable sha of a code snippet while rendering a page.
 
+# 1.4.1 (Bibanon mod) / 2012-02-05
+
+* Major Enhancements
+  * reversing mediawiki_compat
+* Minor Enhancements
+  * Fixed incorrect redirect in new versions of sinatra
+* Bug Fixes
+  * fixed sanitization bug
+
 # 1.4.0 (Bibanon mod) / 2012-02-04
 
 * Major Enhancements
