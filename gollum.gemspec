@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'gollum-bibanon'
-  s.version           = '1.4.1'
+  s.version           = '1.4.2'
   s.date              = '2012-02-04'
   s.rubyforge_project = 'gollum'
 
@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency('pygments.rb', "~> 0.2.0")
   s.add_dependency('posix-spawn', "~> 0.3.0")
   s.add_dependency('sinatra', "~> 1.0")
-  s.add_dependency('mustache', [">= 0.11.2", "< 1.0.0"])
+  s.add_dependency('mustache-bibanon', [">= 0.11.2", "< 1.0.0"])
   s.add_dependency('sanitize', "~> 2.0.0")
   s.add_dependency('nokogiri', "~> 1.4")
   s.add_dependency('redcarpet', "~> 1.17.2")
